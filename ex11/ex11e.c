@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 	}
 
 	// treat the name array like a 4 byte integer
-	printf("four byte integer? %d\n", name);
+	printf("four byte integer? %d\n", name); // doesn't work, gives rubbish
 
 	return 0;	
 }	
