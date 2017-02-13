@@ -12,7 +12,11 @@ int main(int argc, char *argv[])
 
 	// WARNING: on some systems you may have to change the %ld in this code to a
 	// %u since it will use unsigned ints
+	
+	// on a 64bit cpu the byte size of an int is:
 	printf("The size of an int: %ld\n", sizeof(int));
+
+	// with five ints in makes sense that the size of areas is:
 	printf("The size of areas (int[]): %ld\n", sizeof(areas));
 	printf("The number if ints in areas: %ld\n", 
 			sizeof(areas) / sizeof(int));
