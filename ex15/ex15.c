@@ -57,6 +57,13 @@ int main(int argc, char *argv[])
 	}
 	printf("---\n");
 
+	// how about just getting the pointer address
+	printf("The pointers' address:\n");
+	for ( i = 0; i < count; i++) {
+		printf("cur_name: %d, cur_age: %d.\n", (cur_name + i), cur_age + i);
+	}
+	printf("---\n");
+
 	// the wrong way: gets the value of cur_name and then adds the i
 	printf("The wrong way: getting the value of cur_age and then adding i.\n");
 	for (i = 0; i < count; i++) {
