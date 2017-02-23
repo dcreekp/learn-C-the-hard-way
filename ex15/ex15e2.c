@@ -48,6 +48,8 @@ void print_pointers_complex(int count, int *ages, char **names)
 }
 
 void print_passing_arrays_in_as_pointers(int count, int *ages, char **names)
+// this works because arrays passed into functions are always converted into
+// pointers
 {
 	int i = 0;
 	for (i = 0; i < count; i++) {
