@@ -6,7 +6,7 @@ CC = gcc
 # -Wall turns on most but not all compiler warnings
 CFLAGS = -Wall -g
 
-TARGET = ex17pre ex17 ex17b
+TARGET = ex17pre ex17 ex17e ex17b
 
 all: $(TARGET)
 
