@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 	// how about just getting the pointer address
 	printf("The pointers' address:\n");
 	for ( i = 0; i < count; i++) {
-		printf("cur_name: %d, cur_age: %d.\n", (cur_name + i), cur_age + i);
+		printf("cur_name: %p, cur_age: %p.\n", (cur_name + i), cur_age + i);
 	}
 	printf("---\n");
 
