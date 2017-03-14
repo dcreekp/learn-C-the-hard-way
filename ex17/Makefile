@@ -6,10 +6,10 @@ CC = gcc
 # -Wall turns on most but not all compiler warnings
 CFLAGS = -Wall -g
 
-TARGET = ex17pre ex17 ex17e ex17b
+TARGET = ex17pre ex17 ex17e ex17e1 ex17b
 
 all: $(TARGET)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) *.db
 
