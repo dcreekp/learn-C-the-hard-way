@@ -179,6 +179,7 @@ void Database_find(struct Connection *conn, char *string)
 			if ((strcmp(cur->name, string) == 0) || 
 					(strcmp(cur->email, string) == 0) ) {
 				found = 1;
+				printf("found: ");
 				Address_print(cur);
 				break;
 			}
@@ -240,14 +241,4 @@ int main(int argc, char *argv[])
 	Database_close(conn);
 	return 0;
 }
-
-
-	
-
-
-
-
-
-
-
 
