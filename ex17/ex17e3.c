@@ -367,6 +367,7 @@ int main(int argc, char *argv[])
 			int MAX_ROWS = atoi(argv[4]);
 			Database_create(conn, MAX_DATA, MAX_ROWS);
 			Database_write(conn);
+			printf("Created database file: %s\n", filename);
 			break;
 		case 's':
 			if (argc < 8)
