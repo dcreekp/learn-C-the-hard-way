@@ -225,6 +225,9 @@ void Database_set(struct Connection *conn, int id, const char *name,
 {
 	if (!(conn && conn->db && conn->db->rows && conn->db->rows[id])) return;
 
+	if (conn->db->MAX_ROWS < id)
+		die("ID exceeds database row capacity");
+
 	struct Address *addr = conn->db->rows[id];
 	int MAX_DATA = conn->db->MAX_DATA;
 
@@ -297,8 +300,13 @@ int main(int argc, char *argv[])
 		case 'c':
 			if (argc < 5) 
 				die("Need to specify MAX_DATA, MAX_ROWS");
-			int MAX_DATA = atoi(argv[3]);
-			int MAX_ROWS = atoi(argv[4]);
+			// protecting CPU capacity: there is a limit to memory RAM can hold
+			unsigned long MAX_DATA = atoi(argv[3]);
+			unsigned long MAX_ROWS = atoi(argv[4]);
+			if (MAX_DATA > 2000)
+				die("Allowed MAX_DATA = 2000");
+			if (MAX_ROWS > 1000000)
+				die("Allowed MAX_ROWS = 1000000");
 			Database_create(conn, MAX_DATA, MAX_ROWS);
 			Database_write(conn);
 			printf("Created database file: %s\n", filename);

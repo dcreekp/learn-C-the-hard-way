@@ -23,8 +23,8 @@ struct Address {
 
 struct Database {
 	struct Address **rows;
-	int MAX_DATA;
-	int MAX_ROWS;
+	long MAX_DATA;
+	long MAX_ROWS;
 };
 
 struct Connection {
@@ -197,7 +197,8 @@ void Database_write(struct Connection *conn)
 		die(conn, "Database write: Cannot flush database");
 }
 
-void Database_create(struct Connection *conn, int MAX_DATA, int MAX_ROWS)
+void Database_create(struct Connection *conn, long MAX_DATA, 
+		long MAX_ROWS)
 {
 	size_t i = 0;
 
@@ -228,6 +229,9 @@ void Database_create(struct Connection *conn, int MAX_DATA, int MAX_ROWS)
 void Database_set(struct Connection *conn, int id, char *name, int age,
 		char *email, char *location)
 {
+	if (conn->db->MAX_ROWS < id)
+		die(conn, "ID exceeds database row capacity");
+
 	struct Address *addr = conn->db->rows[id];
 	if (addr->set)
 		die(conn, "ID is already set, delete it first");
@@ -363,8 +367,12 @@ int main(int argc, char *argv[])
 		case 'c':
 			if (argc < 5)
 				die(conn, "Need to MAX_DATA and MAX_ROWS to create db");
-			int MAX_DATA = atoi(argv[3]);
-			int MAX_ROWS = atoi(argv[4]);
+			unsigned long MAX_DATA = atoi(argv[3]);
+			unsigned long MAX_ROWS = atoi(argv[4]);
+			if (MAX_DATA > 2000) 
+				die(conn, "Allowed MAX_DATA = 2000");
+			if (MAX_ROWS > 1000000)
+				die(conn, "Allowed MAX_ROWS = 1000000");
 			Database_create(conn, MAX_DATA, MAX_ROWS);
 			Database_write(conn);
 			printf("Created database file: %s\n", filename);
