@@ -366,7 +366,7 @@ int main(int argc, char *argv[])
 	switch (action) {
 		case 'c':
 			if (argc < 5)
-				die(conn, "Need to MAX_DATA and MAX_ROWS to create db");
+				die(conn, "Need MAX_DATA and MAX_ROWS to create db");
 			unsigned long MAX_DATA = atoi(argv[3]);
 			unsigned long MAX_ROWS = atoi(argv[4]);
 			if (MAX_DATA > 2000) 

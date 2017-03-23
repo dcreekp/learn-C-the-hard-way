@@ -118,15 +118,15 @@ void Database_set(struct Connection *conn, int id, const char *name,
 	addr->set = 1;
 
 	// to prevent the strncpy bug
-	addr->name[MAX_DATA] = '\0';
-	char *res = strncpy(addr->name, name, MAX_DATA - 1);
+	addr->name[MAX_DATA - 1] = '\0';
+	char *res = strncpy(addr->name, name, MAX_DATA);
 	if (!res)
 		die("Name copy failed");
 	// an alternative: (but this won't copy if it would fail)
 	// *((char *)memcpy(addr->name, name, MAX_DATA)) = '\0';
 
-	addr->email[MAX_DATA] = '\0';
-	res = strncpy(addr->email, email, MAX_DATA - 1);
+	addr->email[MAX_DATA - 1] = '\0';
+	res = strncpy(addr->email, email, MAX_DATA);
 	if (!res)
 		die("Email copy failed");
 
